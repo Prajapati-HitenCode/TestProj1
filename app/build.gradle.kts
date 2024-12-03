@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
 
+
 }
 
 android {
@@ -16,7 +17,9 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,21 +33,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "22"
     }
     buildFeatures {
         compose = true
+        //noinspection DataBindingWithoutKapt
         dataBinding=true
     }
 }
 
 dependencies {
 
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.runtime.livedata)
     ksp(libs.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.core)

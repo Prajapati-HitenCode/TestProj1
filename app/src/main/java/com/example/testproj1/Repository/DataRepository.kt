@@ -1,4 +1,19 @@
 package com.example.testproj1.Repository
 
-class DataRepository {
-}
+import androidx.lifecycle.LiveData
+import com.example.testproj1.Database.Dao.DataDAO
+import com.example.testproj1.Model.DataModel
+
+class DataRepository( private val dataDAO: DataDAO) {
+
+
+    fun getdata(): LiveData<List<DataModel>>
+    {
+        return dataDAO.getdata()
+    }
+
+    suspend fun insertdata(dataModel: DataModel)
+    {
+        dataDAO.adddata(dataModel)
+    }
+ }
