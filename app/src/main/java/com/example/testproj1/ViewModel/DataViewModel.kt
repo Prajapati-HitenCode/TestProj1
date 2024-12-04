@@ -5,10 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testproj1.Model.DataModel
 import com.example.testproj1.Repository.DataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DataViewModel(private val dataRepository: DataRepository) : ViewModel(){
+@HiltViewModel
+class DataViewModel@Inject constructor(private val dataRepository: DataRepository) : ViewModel(){
 
     fun getdata():LiveData<List<DataModel>>
     {

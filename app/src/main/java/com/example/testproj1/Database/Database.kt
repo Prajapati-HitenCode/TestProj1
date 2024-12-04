@@ -10,6 +10,7 @@ import com.example.testproj1.Model.DataModel
 
 @Database(entities = [DataModel::class], version = 1)
 abstract class Database1 : RoomDatabase() {
+
     abstract fun datadao(): DataDAO
 
     companion object{
